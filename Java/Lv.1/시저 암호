@@ -1,0 +1,16 @@
+class Solution {
+  public String solution(String s, int n) {
+      String ans = "";
+      int ori, rev;
+      
+      for (int i = 0; i < s.length(); i++) {
+          ori = s.charAt(i);
+          rev = ori + n;
+          if (ori >= 65 && ori <= 90 && rev > 90) rev -= 26;
+          else if (ori >= 97 && ori <= 122 && rev > 122) rev -= 26;
+          else if (ori == 32) rev = 32;
+          ans += (char) rev;
+      }
+      return ans;
+  }
+}
