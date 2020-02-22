@@ -1,0 +1,49 @@
+class Solution {
+    public int solution(String s) {
+        String word, tmp;
+        StringBuffer sb;
+        int ans, sLength, end, cnt;
+        
+        ans = sLength = s.length();
+        
+        for (int i = 1; i < sLength / 2 + 1; i++) {
+            word = s.substring(0, i);
+            sb = new StringBuffer();
+            end = sLength - (sLength % i);
+            cnt = 1;
+            
+            for (int j = i; j < sLength; j += i) {
+                if (j + i <= sLength) {
+                    tmp = s.substring(j, j + i);
+                    
+                    if (word.equals(tmp)) {
+                        cnt++;
+                    } else {
+                        if (cnt > 1) {
+                            sb.append(cnt);
+                            cnt = 1;
+                        }
+                        sb.append(word);
+                        word = tmp;
+                    }
+                    
+                    if (j + i == end) {
+                        if (cnt > 1) {
+                            sb.append(cnt);
+                        }
+                        sb.append(word);
+                    }
+                    
+                } else {
+                    sb.append(s.substring(j, sLength));
+                }
+            }
+            
+            if (sb.length() < ans) {
+                ans = sb.length(); 
+            }
+        }
+        
+        return ans;
+    }
+}
