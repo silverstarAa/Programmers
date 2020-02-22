@@ -1,0 +1,18 @@
+class Solution {
+    public boolean solution(String[] phone_book) {
+        boolean ans = true;
+        String phNum1, phNum2;
+        
+        for (int i = 0; i < phone_book.length; i++) {
+            phNum1 = phone_book[i];
+            for (int j = 0; j < phone_book.length; j++) {
+                phNum2 = phone_book[j];
+                if (i != j && phNum1.length() <= phNum2.length()) {
+                    if (phNum1.equals(phNum2.substring(0, phNum1.length()))) return false;
+                }
+            }
+        }
+        
+        return ans;
+    }
+}
