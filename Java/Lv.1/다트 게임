@@ -1,0 +1,45 @@
+class Solution {
+  public int solution(String dartResult) {
+      int ans = 0;
+      int[] point = new int[3];
+      int[] pow = new int[3];
+      
+      int[] multi = new int[3];
+      for (int i = 0; i < 3; i++) multi[i] = 1;
+      
+      int pointIdx = 0;
+      for (int i = 0; i < dartResult.length(); i++) {
+          int ascii = dartResult.charAt(i);
+          int idx = pointIdx - 1;
+          
+          if (ascii >= 48 && ascii <= 57) { // 0 ~ 10
+              if (ascii == 49 && (int) dartResult.charAt(i + 1) == 48) {
+                  point[pointIdx++] = 10;
+                  i++;
+              } else {
+                  point[pointIdx++] = ascii - 48;
+              }
+          
+          } else if (ascii == 68) { // D
+              pow[idx] = 2;
+              
+          } else if (ascii == 83) { // S
+              pow[idx] = 1;
+              
+          } else if (ascii == 84) { // T
+              pow[idx] = 3;
+              
+          } else if (ascii == 42) { // * 
+              if (idx - 1 >= 0) multi[idx - 1] *= 2;
+              multi[idx] *= 2;
+              
+          } else if (ascii == 35) { // #
+              multi[idx] *= -1;      
+          }
+      }
+      
+      for (int i = 0; i < 3; i++) ans += ((int) Math.pow(point[i], pow[i])) * multi[i];
+      
+      return ans;
+  }
+}
