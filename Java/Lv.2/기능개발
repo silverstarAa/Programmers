@@ -1,0 +1,31 @@
+import java.util.Arrays;
+
+class Solution {
+    public int[] solution(int[] prg, int[] spd) {
+        int[] ans = {};
+        
+        int idx = 0, tmp = 0, size = 0;
+        int tot = prg.length;
+        
+        while (idx < tot) {
+            for (int i = idx; i < tot; i++) prg[i] += spd[i];
+            
+            for (int i = idx; i < tot; i++) {
+                if (prg[i] >= 100) {
+                    tmp++;
+                    idx++;
+                } else {
+                    break;
+                }
+            }
+            
+            if (tmp > 0) {
+                ans = Arrays.copyOf(ans, ++size);
+                ans[size - 1] = tmp;
+                tmp = 0;
+            }
+        }
+        
+        return ans;
+    }
+}
