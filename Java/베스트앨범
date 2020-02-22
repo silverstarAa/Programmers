@@ -1,0 +1,52 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] genres, int[] plays) {
+        HashMap<String, Integer> totMap = new HashMap<String, Integer>();
+        for (int i = 0; i < plays.length; i++) {
+            if (totMap.containsKey(genres[i])) totMap.put(genres[i], totMap.get(genres[i]) + plays[i]);
+            else totMap.put(genres[i], plays[i]);
+        }
+        
+        int[] ans = {};
+        int size = 0;
+        List totList = sortByValue(totMap);
+        for (int i = 0; i < totList.size(); i++) {
+            String gn = (String) totList.get(i);
+            List<Integer> gnList = new ArrayList<Integer>();
+            for (int j = 0; j < genres.length; j++) {
+                if (gn.equals(genres[j])) gnList.add(plays[j]);
+            }
+            Collections.sort(gnList);
+            Collections.reverse(gnList);
+            
+            for (int j = 0; j < 2 && j < gnList.size(); j++) {
+                for (int k = 0; k < genres.length; k++) {
+                    if (gn.equals(genres[k]) && gnList.get(j) == plays[k]) {
+                        ans = Arrays.copyOf(ans, ++size);
+                        ans[size - 1] = k;
+                        plays[k] = -1;
+                    }
+                }
+            }
+        }
+        
+        return ans;
+    }
+    
+    
+    public static List sortByValue(Map map) {
+        List<String> list = new ArrayList<String>();
+        list.addAll(map.keySet());
+        
+        Collections.sort(list, new Comparator() {
+            public int compare(Object o1, Object o2) {
+                Object v1 = map.get(o1);
+                Object v2 = map.get(o2);
+                return ((Comparable) v1).compareTo(v2);
+            }
+        });
+        Collections.reverse(list);
+        return list;
+    }
+}
