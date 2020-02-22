@@ -1,0 +1,27 @@
+class Solution {
+    public int solution(String arg) {
+        int ans = 0;
+        
+        for (int i = 0; i < arg.length() - 1; i++) {
+            if (arg.charAt(i) == 40 && arg.charAt(i + 1) != 41) {
+                int sum = 1;
+                int cut = 1;
+                
+                for (int j = i + 1; j < arg.length(); j++) {
+                    if (arg.charAt(j) == 40) {
+                        sum++;
+                    } else if (arg.charAt(j) == 41) {
+                        sum--;
+                        if (arg.charAt(j - 1) == 40) cut++;
+                    }
+                    
+                    if (sum == 0) break;
+                }
+                
+                ans += cut;
+            }
+        }
+        
+        return ans;
+    }
+}
