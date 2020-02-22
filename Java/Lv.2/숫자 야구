@@ -1,0 +1,50 @@
+import java.util.Arrays;
+import java.util.HashSet;
+
+class Solution {
+    public int solution(int[][] baseball) {
+        int[] arr = new int[10000];
+        for (int i = 123; i <= 987; i++) arr[i] = i;
+        
+        for (int i = 123; i <= 987; i++) {
+            String[] str1 = String.valueOf(arr[i]).split("");
+            
+            if ("0".equals(str1[0]) || "0".equals(str1[1]) || "0".equals(str1[2])) {
+                arr[i] = 0;
+                continue;
+            }
+            
+            if (str1[0].equals(str1[1]) || str1[0].equals(str1[2]) || str1[1].equals(str1[2])) {
+                arr[i] = 0;
+                continue;
+            }
+            
+            for (int j = 0; j < baseball.length; j++) {
+                String[] str2 = String.valueOf(baseball[j][0]).split("");
+                
+                int strike = 0;
+                int ball = 0;
+                for (int k = 0; k < str1.length; k++) {
+                    for (int m = 0; m < str2.length; m++) {
+                        if (str1[k].equals(str2[m])) {
+                            if (k == m) strike++;
+                            else ball++;
+                        }
+                    }
+                }
+                
+                if (strike != baseball[j][1] || ball != baseball[j][2]) {
+                    arr[i] = 0;
+                    break;
+                }
+            }
+        }
+        
+        int ans = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) ans++;
+        }
+        
+        return ans;
+    }
+}
