@@ -1,0 +1,10 @@
+class Solution {
+  public String solution(String phNum) {
+      String ans = "";
+      int leng = phNum.length();
+      
+      for (int i = 0; i < leng - 4; i++) ans += "*";
+      
+      return ans + phNum.substring(leng - 4, leng);
+  }
+}
