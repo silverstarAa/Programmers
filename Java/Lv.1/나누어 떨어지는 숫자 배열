@@ -1,0 +1,23 @@
+import java.util.Arrays;
+
+class Solution {
+  public int[] solution(int[] arr, int divisor) {
+      int[] ans = {};
+      int size = 0;
+      
+      for (int a : arr) {
+          if (a % divisor == 0) {
+              ans = Arrays.copyOf(ans, ++size);
+              ans[size - 1] = a;
+          }
+      }
+      
+      if (ans.length == 0) {
+          ans = new int[1];
+          ans[0] = -1;
+      }
+      Arrays.sort(ans);
+      
+      return ans;
+  }
+}
