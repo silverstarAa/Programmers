@@ -1,0 +1,49 @@
+class Solution {
+    int zeros = 0, ans = 0;
+    int idx;
+    int[] idxs;
+    
+    public int solution(String name) {
+        String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String[] strs = name.split("");
+        
+        this.idxs = new int[strs.length];      
+        for (int i = 0; i < strs.length; i++) {
+            idx = alpha.indexOf(strs[i]);
+            if (idx == 0) zeros++;
+            if (idx >= 13) idx = 26 - idx;
+            idxs[i] = idx;
+        }
+        
+        idx = 0;
+        while (zeros != name.length()) {
+            int left = idx, right = idx;
+            for (int i = 0; i < strs.length; i++) {
+                if (right > name.length() - 1) right = 0;
+                if (left < 0) left = name.length() - 1;
+                
+                if (idxs[right] != 0) {
+                    hehe(i, right);
+                    break;
+                    
+                } else if (idxs[left] != 0) {
+                    hehe(i, left);
+                    break;
+                    
+                }
+                
+                right++;
+                left--;   
+            }
+        }
+        
+        return ans;
+    }
+    
+    private void hehe(int i, int tmp) {
+        ans += i + idxs[tmp];
+        idx = tmp;
+        idxs[idx] = 0;
+        zeros++;
+    }
+}
