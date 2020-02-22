@@ -1,0 +1,10 @@
+class Solution {
+  public boolean solution(int x) {
+      int sum = 0;
+      String[] arr = String.valueOf(x).split("");
+      
+      for (String a : arr) sum += Integer.parseInt(a);
+      
+      return (x % sum == 0) ? true : false;
+  }
+}
