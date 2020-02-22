@@ -1,0 +1,22 @@
+class Solution {
+  public String[] solution(int n, int[] arr1, int[] arr2) {
+      String[] ans = new String[n];
+      String str1, str2;
+      
+      for (int i = 0; i < n; i++) {
+          str1 = String.format("%" + n + "s", Integer.toBinaryString(arr1[i]));
+          str2 = String.format("%" + n + "s", Integer.toBinaryString(arr2[i]));
+          
+          String str = "";
+          for (int j = 0; j < n; j++) {
+              if (("0".equals(str1.substring(j, j + 1)) || " ".equals(str1.substring(j, j + 1)))
+                  && ("0".equals(str2.substring(j, j + 1)) || " ".equals(str2.substring(j, j + 1)))) str += " ";
+              else str += "#";
+          }
+          ans[i] = str;
+          
+      }
+      
+      return ans;
+  }
+}
