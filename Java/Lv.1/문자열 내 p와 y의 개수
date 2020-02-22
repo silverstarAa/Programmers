@@ -1,0 +1,13 @@
+class Solution {
+    boolean solution(String s) {
+        char[] chars = s.toLowerCase().toCharArray();
+        int numP = 0, numY = 0;
+        
+        for (char c : chars) {
+            if (c == 'p') numP++;
+            else if (c == 'y') numY++;
+        }
+        
+        return (numP == numY) ? true : false;
+    }
+}
