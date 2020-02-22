@@ -1,0 +1,43 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int N, int[] stages) {
+        int[] ans = new int[N];
+        double[] arr1 = new double[N + 1];
+        
+        Arrays.sort(stages);
+        int totNum = stages.length;
+        for (int stage = 1; stage < N + 1; stage++) {
+            int num = 0;
+            for (int i = 0; i < stages.length; i++) {
+                if (stage == stages[i]) num++;
+                else if (stage < stages[i]) break;
+            }
+            
+            if (totNum != 0) arr1[stage] = (double) num / totNum;
+            else arr1[stage] = 0;
+            
+            totNum -= num;
+        }
+        
+        double[] arr2 = Arrays.copyOf(arr1, N+1);
+        Arrays.sort(arr2);
+        for (int i = 1; i < arr2.length / 2 + 1; i++) {
+            double tmp = arr2[i];
+            arr2[i] = arr2[arr2.length - i];
+            arr2[arr2.length - i] = tmp;
+        }
+        
+        for (int i = 1; i < arr2.length; i++) {
+            for (int j = 1; j < arr1.length; j++) {
+                if (arr2[i] == arr1[j]) {
+                    ans[i - 1] = j;
+                    arr1[j] = -1;
+                    break;
+                }
+            }
+        }
+        
+        return ans;
+    }
+}
