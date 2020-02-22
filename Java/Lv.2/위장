@@ -1,0 +1,18 @@
+import java.util.*;
+
+class Solution {
+    public int solution(String[][] clothes) {
+        int ans = 1;
+        
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        for (String[] c : clothes) {
+            String category = c[1];
+            if (map.containsKey(category)) map.put(category, map.get(c[1]) + 1);
+            else map.put(category, 1);
+        }
+        
+        for (String key : map.keySet()) ans *= map.get(key) + 1;
+        
+        return ans - 1;
+    }
+}
