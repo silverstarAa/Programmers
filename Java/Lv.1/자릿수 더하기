@@ -1,0 +1,12 @@
+import java.util.*;
+
+public class Solution {
+    public int solution(int n) {
+        int ans = 0;
+        String[] arr = String.valueOf(n).split("");
+        
+        for (String a : arr) ans += Integer.parseInt(a);
+
+        return ans;
+    }
+}
