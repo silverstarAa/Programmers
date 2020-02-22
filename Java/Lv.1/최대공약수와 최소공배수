@@ -1,0 +1,34 @@
+class Solution {
+    
+    int a, b;
+    
+    public int[] solution(int n, int m) {
+        this.a = n; this.b = m;
+        int[] ans = new int[2];
+        int nmg = -1;
+        
+        // 최대공약수
+        while (nmg != 0) {
+            swap();
+            
+            nmg = a % b;
+            if (nmg == 0) ans[0] = b;
+            
+            a = b;
+            b = nmg;
+        }
+        
+        // 최소공배수
+        ans[1] = n * m / ans[0];
+        
+        return ans;
+    }
+    
+    public void swap() {
+        if (a < b) {
+            int tmp = a;
+            a = b;
+            b = tmp;
+        }
+    }
+}
