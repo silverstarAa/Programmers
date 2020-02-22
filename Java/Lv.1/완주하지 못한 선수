@@ -1,0 +1,14 @@
+import java.util.Arrays;
+
+class Solution {
+    public String solution(String[] part, String[] comp) {
+        Arrays.sort(part);
+        Arrays.sort(comp);
+        
+        for (int i = 0; i < comp.length; i++) {
+            if (!comp[i].equals(part[i])) return part[i];
+        }
+        
+        return part[part.length - 1];
+    }
+}
