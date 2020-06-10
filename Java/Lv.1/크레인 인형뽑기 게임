@@ -1,0 +1,55 @@
+import java.util.Stack;
+
+class Solution {
+    public int solution(int[][] board, int[] moves) {
+        // 최초 인형 높이 배열 셋팅
+        int[] height = new int[board.length]; // 맨 위에 위치한 인형의 위치 배열
+        
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[j][i] != 0) {
+                    height[i] = j;
+                    break;
+                }
+            }
+        }
+        
+        // 인형 뽑기 시작
+        int ans = 0; // 결과 값
+        int preVal = 0; // 이전에 뽑힌 인형 값
+        int nowVal = 0; // 현재 뽑힌 인형 값
+        int y; 
+        
+        Stack<Integer> stack = new Stack<Integer>(); // 인형을 담을 스택
+        
+        for (int x : moves) {
+            y = height[x - 1]++;
+            
+            if (y >= board.length) {
+                continue; // y가 0보다 작으면 continue
+            }
+            
+            nowVal = board[y][x - 1]; // 현재 위치의 인형 값을 담음
+            
+            // 스택이 비어있으면 값 넣고 continue
+            if (stack.empty()) {
+                stack.push(nowVal);
+                System.out.println("push!");
+                continue;
+            }
+            
+            // 스택에 값이 있으면 preVal에 값을 담아서 nowVal과 비교
+            preVal = stack.pop();
+            
+            if (preVal == nowVal) {
+                ans += 2;
+                
+            } else {
+                stack.push(preVal);
+                stack.push(nowVal);
+            }
+        }
+        
+        return ans;
+    }
+}
