@@ -1,0 +1,34 @@
+class Solution {
+    public int solution(String skill, String[] skill_trees) {
+        char sk;
+        int cnt, tmpIdx, preIdx;
+        int ans = 0;
+        boolean flag;
+        
+        for (String tree : skill_trees) {
+            cnt = 0;
+            preIdx = -1;
+            flag = true;
+            
+            for (int i = 0; i < skill.length(); i++) {
+                sk = skill.charAt(i);
+                tmpIdx = tree.indexOf(sk);
+                
+                if (tmpIdx < 0) continue;
+                
+                if (tmpIdx > preIdx && cnt == i) {
+                    preIdx = tmpIdx;
+                    cnt++;
+                    
+                } else {
+                    flag = false;
+                    break;
+                }
+            }
+            
+            if (flag) ans++;
+        }
+        
+        return ans;
+    }
+}
