@@ -1,0 +1,23 @@
+class Solution {
+    boolean solution(String s) {
+        int sLength = s.length();
+        
+        if (s.charAt(0) == ')' || sLength % 2 != 0) return false;
+        
+        boolean ans = true;
+        int cnt = 1;
+        
+        for (int i = 1; i < sLength; i++) {
+            if (s.charAt(i) == '(') {
+                cnt++;
+            } else {
+                cnt--;
+                if (cnt < 0) return false;
+            }
+        }
+        
+        if (cnt != 0) ans = false;
+        
+        return ans;
+    }
+}
