@@ -1,0 +1,42 @@
+import java.util.*;
+
+class Solution {
+    public String[] solution(String[] strings, int n) {
+        
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+        List<String> list;
+        String key;
+        
+        Arrays.sort(strings);
+        
+        for (String str : strings) {
+            key = str.substring(n, n + 1);
+            
+            if (map.containsKey(key)) {
+                list = map.get(key);
+                list.add(str);
+                
+            } else {
+                list = new ArrayList<String>();
+                list.add(str);
+                map.put(key, list);
+            }
+        }
+        
+        String[] ans = new String[strings.length];
+        String[] arrKey = map.keySet().toArray(new String[map.size()]);
+        int idx = 0;
+        
+        Arrays.sort(arrKey);
+        
+        for (String k : arrKey) {
+            list = map.get(k);
+            
+            for (int i = 0; i < list.size(); i++) {
+                ans[idx++] = list.get(i);
+            }
+        }
+        
+        return ans;
+    }
+}
