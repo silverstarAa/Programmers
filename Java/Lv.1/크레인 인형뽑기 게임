@@ -34,7 +34,6 @@ class Solution {
             // 스택이 비어있으면 값 넣고 continue
             if (stack.empty()) {
                 stack.push(nowVal);
-                System.out.println("push!");
                 continue;
             }
             
