@@ -1,0 +1,10 @@
+SELECT
+    A.ANIMAL_ID
+    , A.ANIMAL_TYPE
+    , A.NAME
+FROM ANIMAL_INS A
+INNER JOIN ANIMAL_OUTS B ON B.ANIMAL_ID = A.ANIMAL_ID
+                         AND B.SEX_UPON_OUTCOME IN ('Spayed Female', 'Neutered Male')
+WHERE A.SEX_UPON_INTAKE NOT IN ('Spayed Female', 'Neutered Male')
+ORDER BY A.ANIMAL_ID
+;
