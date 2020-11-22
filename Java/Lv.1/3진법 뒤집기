@@ -1,0 +1,28 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int n) {
+        
+        List<Integer> list = new ArrayList<Integer>();
+        
+        int mok = n;
+        int nmg = 0;
+        int cnt = 0;
+        int ans = 0;
+        
+        while (mok > 0) {
+            nmg = mok % 3;
+            mok /= 3;
+            
+            list.add(nmg);
+        }
+        
+        for (int i = list.size() - 1; i >= 0; i--) {
+            nmg = list.get(i);
+            ans += Math.pow(3, cnt) * nmg;
+            cnt++;
+        }
+        
+        return ans;
+    }
+}
