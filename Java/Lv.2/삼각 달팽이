@@ -1,0 +1,68 @@
+class Solution {
+    public int[] solution(int n) {
+        
+        if (n == 1) {
+            return new int[]{1};
+        }
+        
+        // 배열 길이 구하기
+        int size = 0;
+        
+        for (int i = 1; i <= n; i++) {
+            size += i;
+        }
+        
+        // 배열 선언
+        int[] ans = new int[size];
+        
+        // 배열에 값 넣기
+        int val = 0;
+        int idx = 0;
+        int length = n;
+        int tmp = 0;
+        int tmp2 = 0;
+        
+        while (val <= size) {
+            
+            // 왼쪽 채우기
+            for (int i = 0; i < length; i++) {
+                idx += i == 0 ? i : i + tmp;
+                val++;
+                if (val > size) break;
+                ans[idx] = val;   
+            }
+            
+            // 바닥 채우기
+            length -= 1;
+            for (int i = 0; i < length; i++) {
+                idx++;
+                val++;
+                if (val > size) break;
+                ans[idx] = val;
+            }
+            
+            // 오른쪽 채우기
+            length -= 1;
+            for (int i = 0; i < length; i++) {
+                idx -= (n - i);
+                val++;
+                if (val > size) break;
+                ans[idx] = val;
+            }
+            
+            // 시작점 찾기
+            length -= 1;
+            for (int i = 0; i < size; i++) {
+                if (ans[i] == 0) {
+                    idx = i;
+                    tmp += 2;
+                    n--;
+                    break;
+                }
+            }
+            
+        }
+        
+        return ans;
+    }
+}
