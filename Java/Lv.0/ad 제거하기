@@ -1,0 +1,10 @@
+import java.util.stream.*;
+
+class Solution {
+    public String[] solution(String[] strArr) {
+        
+        String[] ans = Stream.of(strArr).filter(str -> str.indexOf("ad") < 0).toArray(String[]::new);
+        
+        return ans;
+    }
+}
