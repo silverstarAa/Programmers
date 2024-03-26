@@ -1,0 +1,21 @@
+class Solution {
+    public int[] solution(int[] num_list, int n) {
+        
+        int[] ans = new int[num_list.length];
+        
+        int idx = 0;
+        
+        for (int i = 0; i < num_list.length; i++) {
+            
+            if (i < n) {
+                idx = num_list.length - n + i;
+            } else {
+                idx = i - n;
+            }
+            
+            ans[idx] = num_list[i];
+        }
+        
+        return ans;
+    }
+}
