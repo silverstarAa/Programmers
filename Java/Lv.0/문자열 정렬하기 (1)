@@ -1,0 +1,18 @@
+import java.util.stream.*;
+import java.util.Arrays;
+
+class Solution {
+    public int[] solution(String my_string) {
+        
+        String[] arr = my_string.split("");
+        
+        int[] ans = Stream.of(arr)
+                          .filter(str -> str.matches("^[0-9]*$"))
+                          .mapToInt(Integer::parseInt)
+                          .toArray();
+        
+        Arrays.sort(ans);
+        
+        return ans;
+    }
+}
